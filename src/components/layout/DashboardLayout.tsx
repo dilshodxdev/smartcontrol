@@ -45,14 +45,17 @@ export function DashboardLayout({ children }: Props) {
           <p className="text-sm text-slate-500">
             <b>{user?.email}</b> - Aqlli uy boshqaruv tizimi
           </p>
-
           <Button size="sm" variant="default" onClick={logout}>
             Chiqish
           </Button>
         </header>
 
         {/* Content */}
-        <main className="flex-1 p-6 overflow-auto">{children}</main>
+        <main className="flex-1 p-6 overflow-auto">
+          <h1 className="text-xl font-semibold mb-4">Mening Qurilmalarim</h1>
+          <hr className="mb-4" />
+          {children}
+        </main>
       </div>
     </div>
   );
