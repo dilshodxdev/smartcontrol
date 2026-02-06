@@ -1,32 +1,57 @@
-import type { Device } from "../types";
 import { Card } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import type { Device } from "../types";
+import { Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   device: Device;
+  onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
 };
 
-export function DeviceCard({ device }: Props) {
+export function DeviceCard({ device, onToggle, onDelete }: Props) {
   return (
     <Card
       className="
         w-xs
-        bg-slate-900 text-white
+        h-45
         p-4 rounded-xl
-
+       flex flex-col gap-2
+       justify-between
       "
     >
       {/* Icon */}
-      <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-black font-bold">
+      <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center text-black font-bold">
         {device.name[0]}
       </div>
 
       {/* Name */}
-      <h3 className="mt-3 font-semibold">{device.name}</h3>
+      <h2 className="mt-1 font-semibold text-xl">{device.name}</h2>
 
-      {/* Status */}
-      <p className="text-sm text-slate-400">
-        {device.status === "on" ? "Yoqilgan" : "O'chirilgan"}
-      </p>
+      {/* Actions */}
+      <div className="flex justify-between items-center pt-3">
+        {/* Toggle Status*/}
+        <div className="flex justify-end gap-2 items-center">
+          <p className="text-sm text-slate-400">
+            {device.status === "on" ? "Yoqilgan" : "O'chirilgan"}
+          </p>
+          <Switch
+            id="switch-disabled-unchecked"
+            checked={device.status === "on"}
+            onCheckedChange={() => onToggle(device.id)}
+          />
+        </div>
+
+        {/* Delete */}
+        <Button
+          size="icon"
+          variant="destructive"
+          onClick={() => onDelete(device.id)}
+        >
+          <Trash2 size={8} />
+        </Button>
+      </div>
     </Card>
   );
 }
