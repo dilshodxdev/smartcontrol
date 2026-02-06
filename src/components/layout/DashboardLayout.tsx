@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/features/auth";
+import { GalleryVerticalEnd } from "lucide-react";
 
 type Props = {
   children: ReactNode;
@@ -13,7 +14,14 @@ export function DashboardLayout({ children }: Props) {
     <div className="min-h-screen flex">
       {/* Sidebar */}
       <aside className="w-60 p-4 space-y-4 border-r border-slate-300">
-        <h2 className="text-xl font-bold text-emerald-400">SmartControl</h2>
+        <div className="flex justify-center gap-2 md:justify-start">
+          <div className="flex items-center gap-2 font-medium">
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <GalleryVerticalEnd className="size-4" />
+            </div>
+            SmartControl
+          </div>
+        </div>
 
         <nav className="space-y-2">
           {/* <button className="block w-full text-left px-3 py-2 rounded hover:bg-slate-200">
@@ -38,8 +46,8 @@ export function DashboardLayout({ children }: Props) {
             <b>{user?.email}</b> - Aqlli uy boshqaruv tizimi
           </p>
 
-          <Button size="sm" variant="destructive" onClick={logout}>
-            Logout
+          <Button size="sm" variant="default" onClick={logout}>
+            Chiqish
           </Button>
         </header>
 

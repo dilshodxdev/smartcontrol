@@ -32,12 +32,19 @@ export function DeviceCard({ device, onToggle, onDelete }: Props) {
       {/* Actions */}
       <div className="flex justify-between items-center pt-3">
         {/* Toggle Status*/}
-        <div className="flex justify-end gap-2 items-center">
-          <p className="text-sm text-slate-400">
-            {device.status === "on" ? "Yoqilgan" : "O'chirilgan"}
-          </p>
+        <div className="flex justify-end gap-2 items-center ">
+          {device.status === "on" ? (
+            <p className="text-sm text-emerald-600">Yoqilgan</p>
+          ) : (
+            <p className="text-sm text-red-600">O'chirilgan</p>
+          )}
+
           <Switch
             id="switch-disabled-unchecked"
+            className="
+              data-[state=checked]:bg-emerald-500
+              data-[state=unchecked]:bg-red-500
+            "
             checked={device.status === "on"}
             onCheckedChange={() => onToggle(device.id)}
           />
@@ -47,6 +54,7 @@ export function DeviceCard({ device, onToggle, onDelete }: Props) {
         <Button
           size="icon"
           variant="destructive"
+          className="cursor-pointer"
           onClick={() => onDelete(device.id)}
         >
           <Trash2 size={8} />

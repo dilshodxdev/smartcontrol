@@ -4,11 +4,15 @@ import { useAuth } from "../hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export function Login() {
+import { GalleryVerticalEnd } from "lucide-react";
+
+export default function Login() {
   const login = useAuth((s) => s.login);
 
-  const [email, setEmail] = useState("dilshodxdev"); // yolgon login
-  const [password, setPassword] = useState("12345"); // yolgon parol
+  // Fake login data
+  const [email, setEmail] = useState("dilshodxdev");
+  const [password, setPassword] = useState("12345");
+
   const [error, setError] = useState("");
 
   function handleSubmit(e: React.FormEvent) {
@@ -22,25 +26,72 @@ export function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-40 space-y-4">
-      <h1 className="text-xl font-bold text-center">Login</h1>
+    <div className="grid min-h-svh lg:grid-cols-2">
+      {/* Left */}
+      <div className="flex flex-col gap-4 p-6 md:p-10">
+        {/* Logo */}
+        <div className="flex justify-center gap-2 md:justify-start">
+          <div className="flex items-center gap-2 font-medium">
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <GalleryVerticalEnd className="size-4" />
+            </div>
+            SmartControl
+          </div>
+        </div>
 
-      <Input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        {/* Form */}
+        <div className="flex flex-1 items-center justify-center">
+          <form onSubmit={handleSubmit} className="w-full max-w-xs space-y-4">
+            <h1 className="text-xl font-bold text-center">Login</h1>
 
-      <Input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+            <Input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-      <Button className="w-full">Login</Button>
-    </form>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
+            <Button className="w-full">Login</Button>
+          </form>
+        </div>
+      </div>
+
+      {/* Right Image */}
+      {/* <div className="bg-muted relative hidden lg:block">
+        <img
+          src="/smartcontrol.jpg"
+          alt="Login image"
+          className="absolute inset-0 h-full w-full object-cover object-right
+            dark:brightness-[0.2] dark:grayscale"
+        />
+      </div> */}
+
+      <div className="bg-muted relative hidden lg:block overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="
+  absolute inset-0
+  h-full w-full
+  object-contain
+  bg-black
+"
+        >
+          <source src="/login-bg.mov" type="video/quicktime" />
+        </video>
+
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+    </div>
   );
 }

@@ -10,11 +10,16 @@ export function Devices() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
       {/* Flex  */}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 ">
         {devices.map((d) => (
-          <DeviceCard key={d.id} device={d} onToggle={toggleDevice} onDelete={removeDevice} />
+          <DeviceCard
+            key={d.id}
+            device={d}
+            onToggle={toggleDevice}
+            onDelete={removeDevice}
+          />
         ))}
 
         {/* Yana qo'shish */}
