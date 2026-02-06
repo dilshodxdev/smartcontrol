@@ -10,10 +10,17 @@ export default function Login() {
   const login = useAuth((s) => s.login);
 
   // Fake login data
-  const [email, setEmail] = useState("dilshodxdev");
-  const [password, setPassword] = useState("12345");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(
+    "Iltimos kutib turib automatik login amalga oshirilmoqda...",
+  );
 
-  const [error, setError] = useState("");
+  setTimeout(() => {
+    setEmail("dilshodxdev");
+    setPassword("12345");
+    setError("");
+  }, 3000);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -83,11 +90,12 @@ export default function Login() {
           className="
   absolute inset-0
   h-full w-full
-  object-contain
+  object-cover object-center
+  dark:brightness-[0.2] dark:grayscale
   bg-black
 "
         >
-          <source src="/login-bg.mov" type="video/quicktime" />
+          <source src="/login-bg.mp4" type="video/mp4" />
         </video>
 
         <div className="absolute inset-0 bg-black/40" />
