@@ -13,14 +13,14 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(
-    "Iltimos kutib turib automatik login amalga oshirilmoqda...",
+    "Iltimos kutib turing automatik login amalga oshirilmoqda...",
   );
 
   setTimeout(() => {
     setEmail("dilshodxdev");
     setPassword("12345");
     setError("");
-  }, 3000);
+  }, 4000);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
